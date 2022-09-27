@@ -10,8 +10,15 @@ const port = process.env.PORT || 4000
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  const allowed_origins = ['http://localhost:3000', 'https://charming-kheer-078bf1.netlify.app'];
+  const origin = req.headers.origin;
+
+  if (allowed_origins.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.header('Access-Control-Allow-Credentials', true);
   next();
 })
 

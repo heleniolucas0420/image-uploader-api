@@ -14,8 +14,10 @@ exports.postImageUpload = (req, res, next) => {
   const { filename } = req.file;
   const image_reference = getImageReference(filename);
 
+  const environment = process.env.NODE_ENV || 'development';
+
   const url =
-    process.env.NODE_ENV === 'development'
+    environment === 'development'
       ? `http://localhost:4000/images/${filename}`
       : `https://murmuring-waters-99242.herokuapp.com/images/${filename}`;
 
