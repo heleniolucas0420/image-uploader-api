@@ -15,6 +15,9 @@ app.use((req, res, next) => {
   next();
 })
 
+app.get('/', (req, res, next) => {
+  res.status(200).send('<h1>Server is up and runnig! 🌚</h1>');
+});
 app.use('/images', image_routes);
 app.use(error_routes);
 
