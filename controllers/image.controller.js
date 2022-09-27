@@ -25,7 +25,7 @@ exports.getImage = (req, res, next) => {
   const { image_name } = req.params;
   Image.findById(image_name, (data) => {
     if (!data) {
-      res.status(404).redirect('/page-not-found');
+      res.status(404).redirect('/image-not-found');
     } else {
       const { image_data, image } = data;
       const image_extension = getImageExtension(image_data.name);
